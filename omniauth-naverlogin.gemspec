@@ -15,5 +15,6 @@ Gem::gemification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|gem|features)/})
   gem.require_paths = ["lib"]
 
+  gem.add_dependency 'omniauth-oauth2', '~> 1.1'
   gem.add_development_dependency "bundler", "~> 1.7"
 end
