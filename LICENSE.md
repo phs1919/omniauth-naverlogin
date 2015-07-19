@@ -1,4 +1,4 @@
-Copyright (c) 2015 Richard Park
+Copyright (c) 2015 Richard Park and Tumblbug, Inc.
 
 MIT License
 
