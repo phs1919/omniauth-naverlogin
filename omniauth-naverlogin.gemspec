@@ -1,4 +1,4 @@
-require File.expand_path("../lib/omniauth-naver-login/version", __FILE__)
+require File.expand_path("../lib/omniauth-naverlogin/version", __FILE__)
 
 Gem::gemification.new do |gem|
   gem.name          = "omniauth-naver-login"
