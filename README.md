@@ -1,6 +1,6 @@
 # Omniauth::Naver::Login
 
-TODO: Write a gem description
+[![Code Climate](https://codeclimate.com/github/tumblbug/omniauth-naverlogin/badges/gpa.svg)](https://codeclimate.com/github/tumblbug/omniauth-naverlogin)
 
 ## Installation
 
