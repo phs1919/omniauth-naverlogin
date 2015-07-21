@@ -23,20 +23,8 @@ RSpec.describe OmniAuth::Strategies::NaverLogin do
 
   describe "info" do
     context "with male" do
-      let(:raw_info_hash) {
-        {
-          "enc_id" => "AkKauiSQz",
-          "nickname" => "naverIDLogin",
-          "id" => "UNIQUEID",
-          "gender" => "M",
-          "age" => "40-49",
-          "birthday" => "01-01",
-          "profile_image" => "http://naver.com/image.url.jpg",
-          "name" => "username"
-        }
-      }
-
       before(:example) do
+        @gender = "M"
         allow(subject).to receive(:raw_info).and_return(raw_info_hash)
       end
 
@@ -69,21 +57,9 @@ RSpec.describe OmniAuth::Strategies::NaverLogin do
       end
     end
 
-    context "with female" do
-      let(:raw_info_hash) {
-        {
-          "enc_id" => "AkKauiSQz",
-          "nickname" => "naverIDLogin",
-          "id" => "UNIQUEID",
-          "gender" => "F",
-          "age" => "40-49",
-          "birthday" => "01-01",
-          "profile_image" => "http://naver.com/image.url.jpg",
-          "name" => "username"
-        }
-      }
-      
+    context "with female" do     
       before(:example) do
+        @gender = "F"
         allow(subject).to receive(:raw_info).and_return(raw_info_hash)
       end
 
@@ -93,20 +69,8 @@ RSpec.describe OmniAuth::Strategies::NaverLogin do
     end
 
     context "with uncertain gender" do
-      let(:raw_info_hash) {
-        {
-          "enc_id" => "AkKauiSQz",
-          "nickname" => "naverIDLogin",
-          "id" => "UNIQUEID",
-          "gender" => "U",
-          "age" => "40-49",
-          "birthday" => "01-01",
-          "profile_image" => "http://naver.com/image.url.jpg",
-          "name" => "username"
-        }
-      }
-
       before(:example) do
+        @gender = nil
         allow(subject).to receive(:raw_info).and_return(raw_info_hash)
       end
 
@@ -116,3 +80,18 @@ RSpec.describe OmniAuth::Strategies::NaverLogin do
     end
   end
 end
+
+private
+
+  def raw_info_hash
+    {
+      "gender" => @gender,
+      "enc_id" => "AkKauiSQz",
+      "nickname" => "naverIDLogin",
+      "id" => "UNIQUEID",      
+      "age" => "40-49",
+      "birthday" => "01-01",
+      "profile_image" => "http://naver.com/image.url.jpg",
+      "name" => "username"
+    }  
+  end
