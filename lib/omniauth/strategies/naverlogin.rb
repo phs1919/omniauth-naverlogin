@@ -71,8 +71,20 @@ module OmniAuth
 
         # Returns raw info based on raw_data
         # 
-        # @example TODO
+        # @example
+        #   {
+        #     "enc_id" => "AkKauiSQz",
+        #     "nickname" => "naverIDLogin",
+        #     "id" => "UNIQUEID",
+        #     "gender" => "M",
+        #     "age" => "40-49",
+        #     "birthday" => "01-01",
+        #     "profile_image" => "http://naver.com/image.url.jpg",
+        #     "name" => "username"
+        #   }
         # 
+        # @see https://nid.naver.com/devcenter/docs.nhn?menu=API
+        #      Section 6.1
         def raw_info
           @raw_info ||= raw_data["data"]["response"]
         end
@@ -84,12 +96,10 @@ module OmniAuth
         #      Section 6.1
         #         
         def gender
-          if raw_info['gender'].include?('M')
-            '남성'
-          elsif raw_info['gender'].include?('F')
-            '여성'
-          else
-            nil
+          if raw_info['gender'] == "M"
+            "male"
+          elsif raw_info['gender'] == "F"
+            "female"
           end
         end
     end

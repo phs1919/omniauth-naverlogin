@@ -3,6 +3,10 @@ RSpec.describe OmniAuth::Strategies::NaverLogin do
     OmniAuth::Strategies::NaverLogin.new({})
   end
 
+  it "has correct name" do
+    expect(subject.options.name).to eq("naverlogin")
+  end
+
   describe "client options" do    
     it "has correct site option" do
       expect(subject.options.client_options.site).to eq("https://nid.naver.com")
@@ -14,6 +18,101 @@ RSpec.describe OmniAuth::Strategies::NaverLogin do
     
     it "has correct token_url" do
       expect(subject.options.client_options.token_url).to eq("https://nid.naver.com/oauth2.0/token")
+    end
+  end
+
+  describe "info" do
+    context "with male" do
+      let(:raw_info_hash) {
+        {
+          "enc_id" => "AkKauiSQz",
+          "nickname" => "naverIDLogin",
+          "id" => "UNIQUEID",
+          "gender" => "M",
+          "age" => "40-49",
+          "birthday" => "01-01",
+          "profile_image" => "http://naver.com/image.url.jpg",
+          "name" => "username"
+        }
+      }
+
+      before(:example) do
+        allow(subject).to receive(:raw_info).and_return(raw_info_hash)
+      end
+
+      it "returns the name" do
+        expect(subject.info[:name]).to eq(raw_info_hash["name"])
+      end
+
+      it "returns the email" do
+        expect(subject.info[:email]).to eq(raw_info_hash["email"])
+      end
+      
+      it "returns the nickname" do
+        expect(subject.info[:nickname]).to eq(raw_info_hash["nickname"])
+      end
+
+      it "returns the image" do
+        expect(subject.info[:image]).to eq(raw_info_hash["profile_image"])
+      end
+
+      it "returns the age" do
+        expect(subject.info[:age]).to eq(raw_info_hash["age"])
+      end
+
+      it "returns the birthday" do
+        expect(subject.info[:birthday]).to eq(raw_info_hash["birthday"])
+      end
+    
+      it "returns male gender" do
+        expect(subject.info[:gender]).to eq("male")
+      end
+    end
+
+    context "with female" do
+      let(:raw_info_hash) {
+        {
+          "enc_id" => "AkKauiSQz",
+          "nickname" => "naverIDLogin",
+          "id" => "UNIQUEID",
+          "gender" => "F",
+          "age" => "40-49",
+          "birthday" => "01-01",
+          "profile_image" => "http://naver.com/image.url.jpg",
+          "name" => "username"
+        }
+      }
+      
+      before(:example) do
+        allow(subject).to receive(:raw_info).and_return(raw_info_hash)
+      end
+
+      it "returns female gender" do        
+        expect(subject.info[:gender]).to eq("female")
+      end
+    end
+
+    context "with uncertain gender" do
+      let(:raw_info_hash) {
+        {
+          "enc_id" => "AkKauiSQz",
+          "nickname" => "naverIDLogin",
+          "id" => "UNIQUEID",
+          "gender" => "U",
+          "age" => "40-49",
+          "birthday" => "01-01",
+          "profile_image" => "http://naver.com/image.url.jpg",
+          "name" => "username"
+        }
+      }
+
+      before(:example) do
+        allow(subject).to receive(:raw_info).and_return(raw_info_hash)
+      end
+
+      it "returns nil gender" do
+        expect(subject.info[:gender]).to eq(nil)
+      end
     end
   end
 end
