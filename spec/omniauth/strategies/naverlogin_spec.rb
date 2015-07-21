@@ -1,4 +1,4 @@
-describe OmniAuth::Strategies::NaverLogin do
+RSpec.describe OmniAuth::Strategies::NaverLogin do
   subject do
     OmniAuth::Strategies::NaverLogin.new({})
   end

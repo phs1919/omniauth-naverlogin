@@ -1,5 +1,4 @@
-require 'webmock'
-require 'webmock/rspec'
+require 'omniauth-naverlogin'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
