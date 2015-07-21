@@ -3,8 +3,8 @@ require 'omniauth-oauth2'
 
 module OmniAuth
   module Strategies
-    class Naver < OmniAuth::Strategies::OAuth2
-      option :name, "naver"
+    class NaverLogin < OmniAuth::Strategies::OAuth2
+      option :name, "naverlogin"
 
       option :client_options, {
         site: "https://nid.naver.com",
