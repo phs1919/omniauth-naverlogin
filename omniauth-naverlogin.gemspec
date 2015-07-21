@@ -1,12 +1,12 @@
 require File.expand_path("../lib/omniauth-naverlogin/version", __FILE__)
 
-Gem::gemification.new do |gem|
+Gem::Specification.new do |gem|
   gem.name          = "omniauth-naverlogin"
   gem.version       = Omniauth::NaverLogin::VERSION
   gem.authors       = ["Richard Park"]
   gem.email         = ["richard@tumblbug.com"]
-  gem.summary       = "Naver Login Strategy for Omniauth"
-  gem.description   = gem.summary
+  gem.summary       = "Naver Login Strategy"
+  gem.description   = "Naver Login Strategy for Omniauth"
   gem.homepage      = "https://github.com/tumblbug/omniauth-naverlogin"
   gem.license       = "MIT"
 
@@ -16,8 +16,8 @@ Gem::gemification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "omniauth-oauth2", "~> 1.1"
-  gem.add_development_dependency "rspec"
-  gem.add_development_dependency "webmock"
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "bundler", "~> 1.7"
+  gem.add_development_dependency "rspec", "~> 3.3"
+  gem.add_development_dependency "webmock", "~> 1.21"
+  gem.add_development_dependency "rake", "~> 10.4"
+  gem.add_development_dependency "bundler", "~> 1.10"
 end
