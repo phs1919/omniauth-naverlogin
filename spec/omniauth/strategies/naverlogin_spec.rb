@@ -70,7 +70,7 @@ RSpec.describe OmniAuth::Strategies::NaverLogin do
 
     context "with uncertain gender" do
       before(:example) do
-        @gender = nil
+        @gender = "U"
         allow(subject).to receive(:raw_info).and_return(raw_info_hash)
       end
 
@@ -79,13 +79,38 @@ RSpec.describe OmniAuth::Strategies::NaverLogin do
       end
     end
   end
+
+  describe "extra" do
+    before(:example) do
+      allow(subject).to receive(:raw_info).and_return(raw_info_hash)
+    end
+
+    context "with skip_info true" do
+      it "does not include raw_info in extras hash" do
+        subject.options[:skip_info] = true
+        expect(subject.extra).not_to have_key(:raw_info)
+      end
+    end
+
+    context "with skip_info false" do
+      it "includes raw_info in extras hash" do
+        subject.options[:skip_info] = false
+        expect(subject.extra[:raw_info]).to eq(raw_info_hash)
+      end
+    end
+  end
 end
 
+# ===============================================================
+# 
+#                             PRIVATE
+# 
+# ===============================================================
 private
 
   def raw_info_hash
     {
-      "gender" => @gender,
+      "gender" => @gender || "M",
       "enc_id" => "AkKauiSQz",
       "nickname" => "naverIDLogin",
       "id" => "UNIQUEID",      
@@ -93,5 +118,5 @@ private
       "birthday" => "01-01",
       "profile_image" => "http://naver.com/image.url.jpg",
       "name" => "username"
-    }  
+    }
   end
