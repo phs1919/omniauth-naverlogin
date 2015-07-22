@@ -1,6 +1,7 @@
 # Omniauth::Naver::Login
 
 [![Code Climate](https://codeclimate.com/github/tumblbug/omniauth-naverlogin/badges/gpa.svg)](https://codeclimate.com/github/tumblbug/omniauth-naverlogin)
+[![Build Status](https://travis-ci.org/tumblbug/omniauth-naverlogin.svg?branch=master)](https://travis-ci.org/tumblbug/omniauth-naverlogin)
 
 ## Installation
 
